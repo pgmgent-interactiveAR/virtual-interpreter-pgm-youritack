@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-face.prod.js"></script>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-face-aframe.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <link rel="stylesheet" href="./css/index.css" />
+    <title>AR Interpreter</title>
+  </head>
+  <body>
+    <div class="subtitles-container">
+      <div class="subtitles"></div>
+    </div>
+    <a-scene
+      mindar-face
+      color-space="sRGB"
+      renderer="colorManagement: true, physicallyCorrectLights"
+      vr-mode-ui="enabled: false"
+      device-orientation-permission-ui="enabled: false"
+    >
+      <a-assets>
+        <a-asset-item id="headModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/face-tracking/assets/sparkar/headOccluder.glb"></a-asset-item>
+      </a-assets>
+        <a-asset-item
+          id="glasses"
+          src="./assets/models/glasses.glb"
+        ></a-asset-item>
+        <a-asset-item id="Hand" src="./assets/models/hand.glb"></a-asset-item>
+      </a-assets>
+
+      <a-entity mindar-face-target="anchorIndex: 447">
+        <a-gltf-model gltf-model="#Hand" scale="0.1 0.1 0.1"  position="1 0  0" rotation="0 180 0" id="handModel"></a-gltf-model>
+      </a-entity>
+
+      <a-camera active="false" position="0 0 0"></a-camera>
+    </a-scene>
+    <div class="buttons">
+      <ul class="buttonslist">
+        <li>
+          <button id="microphone" class="button">
+            <img
+              class="button-image"
+              id="microphone-image"
+              src="./assets/svg/microphone_mute.svg"
+              alt="microphone"
+            />
+          </button>
+        </li>
+        <li>
+          <button id="subtitles" class="button">
+            <img
+              class="button-image"
+              id="subtitle-image"
+              src="./assets/svg/subtitle.svg"
+              alt="microphone"
+            />
+          </button>
+        </li>
+      </ul>
+    </div>
+  </body>
+  <script src="./scripts/app.js" type="module"></script>
+</html>
