@@ -1,8 +1,8 @@
 {
 	"liveServer.settings.https": {
 	"enable": true, //set it true to enable the feature.
-	"cert": "F:/IAR opdrachten/AR-Tolk/server.crt", //full path of the certificate
-	"key": "F:/IAR opdrachten/AR-Tolk/server.key", //full path of the private key
+	"cert": "F:/IAR opdrachten/Nieuwe map/server.crt", //full path of the certificate
+	"key": "F:/IAR opdrachten/Nieuwe map/server.key", //full path of the private key
 	"passphrase": "1234"
 	},
 	"liveServer.settings.port": 5502
