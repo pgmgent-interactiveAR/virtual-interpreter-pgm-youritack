@@ -23,8 +23,10 @@
       device-orientation-permission-ui="enabled: false"
     >
       <a-assets>
-        <a-asset-item id="headModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/face-tracking/assets/sparkar/headOccluder.glb"></a-asset-item>
-      </a-assets>
+        <a-asset-item
+          id="headModel"
+          src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/face-tracking/assets/sparkar/headOccluder.glb"
+        ></a-asset-item>
         <a-asset-item
           id="glasses"
           src="./assets/models/glasses.glb"
@@ -33,14 +35,35 @@
       </a-assets>
 
       <a-entity mindar-face-target="anchorIndex: 447">
-        <a-gltf-model gltf-model="#Hand" scale="0.1 0.1 0.1"  position="1 0  0" rotation="0 180 0" id="handModel"></a-gltf-model>
+        <a-gltf-model
+          gltf-model="#Hand"
+          scale="0.1 0.1 0.1"
+          position="1 0  0"
+          rotation="0 180 0"
+          id="handModel"
+          visible="true"
+          animation-mixer="clip:box; loop:once;  crossFadeDuration:0"
+        ></a-gltf-model>
       </a-entity>
       <a-entity mindar-face-target="anchorIndex: 168">
-        <a-gltf-model rotation="-20 0 0" position="0 -.3 -.1" scale="6 6 6" src="#glasses" id="glassesmodel"></a-gltf-model>
-       </a-entity>
-       <a-entity mindar-face-target="anchorIndex: 168">
-        <a-gltf-model mindar-face-occluder position="0 0 -.2"rotation="0 0 0" scale="0.08 0.08 0.08" src="#headModel"></a-gltf-model>
-  </a-entity>
+        <a-gltf-model
+          rotation="-20 0 0"
+          position="0 -.3 -.1"
+          scale="6 6 6"
+          src="#glasses"
+          id="glassesmodel"
+          visible="false"
+        ></a-gltf-model>
+      </a-entity>
+      <a-entity mindar-face-target="anchorIndex: 168">
+        <a-gltf-model
+          mindar-face-occluder
+          position="0 0 -.2"
+          rotation="0 0 0"
+          scale="0.08 0.08 0.08"
+          src="#headModel"
+        ></a-gltf-model>
+      </a-entity>
       <a-camera active="false" position="0 0 0"></a-camera>
     </a-scene>
     <div class="buttons">
@@ -50,16 +73,17 @@
             <img
               class="button-image"
               id="microphone-image"
-              src="./assets/svg/microphone_mute.svg"
+              src="./assets/svg/microphone-mute.svg"
               alt="microphone"
             />
           </button>
         </li>
+
         <li>
           <button id="subtitles" class="button">
             <img
               class="button-image"
-              id="subtitle-image"
+              id="subtitles-image"
               src="./assets/svg/subtitle.svg"
               alt="microphone"
             />

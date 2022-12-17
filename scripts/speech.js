@@ -10,12 +10,13 @@ const SpeechApp = () => {
     recognition.maxAlternatives = 1;
     const speechrecognitionlist = new SpeechGrammarList();
     const subtitles = document.querySelector('.subtitles');
-    const subtitlescontainer = document.querySelector('.subtitles-container');
+    const subtitlesContainer = document.querySelector('.subtitles-container');
     const handmodel = document.querySelector('#handModel');
-    const speechbutton = document.querySelector('#microphone');
-    const speechbuttonImage = document.querySelector('#microphone-image');
-    const subtitlesbutton = document.querySelector('#subtitles');
-    const subtitlesbuttonImage = document.querySelector('#subtitle-image');
+    const speechButton = document.querySelector('#microphone');
+    const speechButtonImage = document.querySelector('#microphone-image');
+    const subtitlesButton = document.querySelector('#subtitles');
+    const subtitlesButtonImage = document.querySelector('#subtitles-image');
+
 
     const animationlistobj=[
         {
@@ -32,33 +33,47 @@ const SpeechApp = () => {
             animationName:'goodbye',
             target : 447,
             position :"1 0 0",
-        }
+            repetitions: 2,
+            loop:"repeat",
+        },
+        {
+            animationName:'box',
+            target : 447,
+            position : "1 0 0",
+        },
+        {
+            animationName:'nice',
+            target : 447,
+            position : "1 0 0",
+        },
 
     ];
     const renderqueue=[];
 
-    speechbutton.addEventListener('click',()=>{
-        if (speechbutton.classList.contains("active")) {
-            speechbutton.classList.remove("active");
-            speechbuttonImage.src = "../assets/svg/microphone.svg";
+    speechButton.addEventListener('click',()=>{
+        if (speechButton.classList.contains("active")) {
+            speechButton.classList.remove("active");
+            speechButtonImage.src = "../assets/svg/microphone.svg";
             recognition.start();
           } else {
-            speechbutton.classList.add("active");
-            speechbuttonImage.src = "../assets/svg/microphone_mute.svg";
+            speechButton.classList.add("active");
+            speechButtonImage.src = "../assets/svg/microphone-mute.svg";
             recognition.stop();
           }
     },false)
-    subtitlesbutton.addEventListener('click',()=>{
-        if (subtitlesbutton.classList.contains("active")) {
-            subtitlesbutton.classList.remove("active");
-            subtitlesbuttonImage.src = "../assets/svg/subtitle.svg";
-            subtitlescontainer.classList.remove('hidden');
+    
+    subtitlesButton.addEventListener('click',()=>{
+        if (subtitlesButton.classList.contains("active")) {
+            subtitlesButton.classList.remove("active");
+            subtitlesButtonImage.src = "../assets/svg/subtitle.svg";
+            subtitlesContainer.classList.remove('hidden');
           } else {
-            subtitlesbutton.classList.add("active");
-            subtitlesbuttonImage.src = "../assets/svg/subtitle-not-active.svg";
-            subtitlescontainer.classList.add('hidden');
+            subtitlesButton.classList.add("active");
+            subtitlesButtonImage.src = "../assets/svg/subtitle-not-active.svg";
+            subtitlesContainer.classList.add('hidden');
           }
     },false)
+
 
     recognition.addEventListener('result',(event)=>{
         const guess = event.results[event.results.length-1];
@@ -89,6 +104,8 @@ const SpeechApp = () => {
         animationName,
         target = 447,
         position ="1 0 0",
+        repetitions,
+        loop="once",
 
     })=>{
         handmodel.parentElement.setAttribute(
@@ -97,7 +114,8 @@ const SpeechApp = () => {
         );
         handmodel.setAttribute("animation-mixer",{
             clip:`${animationName}`,
-            loop: "once",
+            loop: loop,
+            repetitions:repetitions,
             crossFadeDuration:0,
         })
         handmodel.setAttribute("visible",true);
